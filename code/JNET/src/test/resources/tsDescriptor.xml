@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<name>aceComplete</name>
+<description></description>
+<version>1.0</version>
+<vendor></vendor>
+<imports>
+        <import location="../../../src/main/resources/julie-basic-types.xml"/>
+        <import location="../../../src/main/resources/julie-morpho-syntax-types.xml"/>
+        <import location="../../../src/main/resources/julie-semantics-mention-types.xml"/>
+</imports>
+</typeSystemDescription>
