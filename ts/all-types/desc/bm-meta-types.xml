@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <name>BM-meta-types</name>
+  <description>This file contains types thought to contain annotations about the document itself or portions of it, like classifictications or other metadata.</description>
+  <version>1.1</version>
+  <vendor/>
+  <imports>
+    <import location="bm-basic-types.xml"/>
+  </imports>
+  <types>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.meta.Class</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>value</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.meta.PolarityClass</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.meta.Class</supertypeName>
+      <features>
+        <featureDescription>
+          <name>value</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>intensity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.meta.SubjectivityClass</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.meta.Class</supertypeName>
+      <features>
+        <featureDescription>
+          <name>value</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>

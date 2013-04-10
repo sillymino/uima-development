@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <name>bm-web-types</name>
+  <description>The type system contains annotation types to annotate web related stuf like, urls, mail address, twitter hashtags, twiter users and others, it . Derived from julie labs type system</description>
+  <version>1.0</version>
+  <vendor/>
+  <imports>
+    <import location="bm-basic-types.xml"/>
+  </imports>
+  <types>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.web.URL</name>
+      <description>bm web type for URL</description>
+      <supertypeName>org.barcelonamedia.uima.ts.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>value</name>
+          <description>the value</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>domain</name>
+          <description>The domain to which it belongs</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>category</name>
+          <description>the kind of url, http, ftp, https</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>redirection</name>
+          <description>if it is a short redirection, the redirect</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.web.mail</name>
+      <description>bm web type for e-mail address</description>
+      <supertypeName>org.barcelonamedia.uima.ts.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>value</name>
+          <description>the value</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>domain</name>
+          <description>The domain to which it belongs</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>user</name>
+          <description>The user</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.web.twHash</name>
+      <description>bm web type for URL</description>
+      <supertypeName>org.barcelonamedia.uima.ts.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>value</name>
+          <description>the value</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.web.twUser</name>
+      <description>bm web type for URL</description>
+      <supertypeName>org.barcelonamedia.uima.ts.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>value</name>
+          <description>the value</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>
