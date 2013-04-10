@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <name>BM-types</name>
+  <description>The type system contains types for the annotation of
+		specific infojobs concepts.</description>
+  <version>2.1</version>
+  <vendor/>
+  <imports>
+    <import location="bm-basic-types.xml"/>
+    <import location="bm-semantics-types.xml"/>
+  </imports>
+  <types>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.opinion.Target</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.EntityMention</supertypeName>
+      <features>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.opinion.Cue</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.EntityMention</supertypeName>
+      <features>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.opinion.Polar</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.EntityMention</supertypeName>
+      <features>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+        <typeDescription>
+      <name>org.barcelonamedia.uima.ts.opinion.Sentiment</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.ConceptMention</supertypeName>
+      <features>
+        <featureDescription>
+          <name>sentiment</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.opinion.Topic</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.EntityMention</supertypeName>
+    </typeDescription>
+  </types>
+</typeSystemDescription>

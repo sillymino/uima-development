@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../src/main/resources/solrConsumerMapping.xsd">
+
+    <field name="tokens_with_span">
+        <annotations>
+            <annotation type="org.apache.uima.examples.tokenizer.Token">
+                <features coveredText="true" separator=' '>
+                	<feature name='begin'/>
+                	<feature name='end' />
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+</fields>

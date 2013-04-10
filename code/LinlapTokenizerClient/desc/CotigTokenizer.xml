@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>org.barcelonamedia.uima.CotigTokenizer</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>CotigTokenizer</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>TokenType</name>
+        <description>type for tokens (e.g. de.julielab.jules.types.Token) or "None" to skip token annotation</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>SentenceType</name>
+        <description>type for sentences (e.g. de.julielab.jules.types.Sentence) or "None" to skip sentence annotation</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>SentenceType</name>
+        <value>
+          <string>de.julielab.jules.types.Sentence</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>TokenType</name>
+        <value>
+          <string>None</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import name="ts.bm.bm-all-types"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type>de.julielab.jules.types.Sentence</type>
+          <type allAnnotatorFeatures="true">de.julielab.jules.types.Token</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

@@ -1,0 +1,2 @@
+org.apache.uima.examples.SourceDocumentInformation:uri,org.barcelonamedia.uima.ts.opinion.Polar:polarity,org.barcelonamedia.uima.ts.opinion.Polar:begin,org.barcelonamedia.uima.ts.opinion.Polar:end
+file:/C:/Users/david.garcian/Documents/Mis archivos/UIMA/input/1.txt,N,0,5

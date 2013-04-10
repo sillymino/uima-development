@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <name>BM-types</name>
+  <description>The type system contains types for the annotation of
+		specific ACCESO concepts for opinion mining.</description>
+  <version>2.1</version>
+  <vendor/>
+  <imports>
+    <import location="bm-basic-types.xml"/>
+    <import location="bm-semantics-types.xml"/>
+    <import location="bm-opinion-types.xml"/>
+  </imports>
+  <types>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.acceso.TargetPolarity</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.ConceptMention</supertypeName>
+      <features>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.acceso.CuePolarity</name>
+      <description/>
+      <supertypeName>org.barcelonamedia.uima.ts.ConceptMention</supertypeName>
+      <features>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.ts.acceso.OpinionatedUnit</name>
+      <description>Polar link between Target and Cue to define a opinion-bearing segment</description>
+      <supertypeName>org.barcelonamedia.uima.ts.ConceptMention</supertypeName>
+      <features>
+        <featureDescription>
+          <name>Target</name>
+          <description/>
+          <rangeTypeName>org.barcelonamedia.uima.ts.Annotation</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>Cue</name>
+          <description/>
+          <rangeTypeName>org.barcelonamedia.uima.ts.Annotation</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>path</name>
+          <description>The dependency-based path found between Target and Cue</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>intensity</name>
+          <description>Intensity of the opinion</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>
