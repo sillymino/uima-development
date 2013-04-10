@@ -1,0 +1,6 @@
+@relation polarity
+
+@attribute text string
+@attribute polarity {P,N,X}
+
+@data

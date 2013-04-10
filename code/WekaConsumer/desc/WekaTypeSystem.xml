@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.watson.ibm.com/resourceSpecifier">
+<name>Weka Type System</name>
+<description> </description>
+<version>1.0</version>
+<vendor></vendor>
+<types>
+<typeDescription>
+<name>org.barcelonamedia.uima.types.AttributeValue</name>
+<description></description>
+<supertypeName>uima.tcas.Annotation</supertypeName>
+<features>
+<featureDescription>
+<name>attributeName</name>
+<description></description>
+<rangeTypeName>uima.cas.String</rangeTypeName>
+</featureDescription>
+<featureDescription>
+<name>value</name>
+<description></description>
+<rangeTypeName>uima.cas.String</rangeTypeName>
+</featureDescription>
+</features>
+</typeDescription>
+<typeDescription>
+<name>org.barcelonamedia.uima.types.NumericAttributeValue</name>
+<description>Corresponds to the ARFF numeric attributes.</description>
+<supertypeName>org.barcelonamedia.uima.types.AttributeValue</supertypeName>
+</typeDescription>
+<typeDescription>
+<name>org.barcelonamedia.uima.types.NominalAttributeValue</name>
+<description></description>
+<supertypeName>org.barcelonamedia.uima.types.AttributeValue</supertypeName>
+</typeDescription>
+<typeDescription>
+<name>org.barcelonamedia.uima.types.StringAttributeValue</name>
+<description></description>
+<supertypeName>org.barcelonamedia.uima.types.AttributeValue</supertypeName>
+</typeDescription>
+<typeDescription>
+<name>org.barcelonamedia.uima.types.DateAttributeValue</name>
+<description></description>
+<supertypeName>org.barcelonamedia.uima.types.AttributeValue</supertypeName>
+</typeDescription>
+<typeDescription>
+<name>org.barcelonamedia.uima.types.SolrField</name>
+<description>Corresponds to the Solr field.</description>
+<supertypeName>org.barcelonamedia.uima.types.AttributeValue</supertypeName>
+</typeDescription>
+</types>
+</typeSystemDescription>

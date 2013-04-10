@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <implementationName>org.barcelonamedia.uima.consumer.WekaConsumer.ARFFDataFileCasConsumer</implementationName>
+  <processingResourceMetaData>
+    <name>ARFFDataFileCasConsumer</name>
+    <version>1.0</version>
+    <configurationParameters>
+      <configurationParameter>
+        <name>ArffHeaderFile</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ArffDataFile</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>BaseAnnotation</name>
+        <description>It set (not empty or spaces) then the extraction is performed on each element of that annotation. This means that the system will generate a feature vector for each element, sent it to weka,  and store the classification with the same text span.
+The input data must be related to that text span.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>ArffHeaderFile</name>
+        <value>
+          <string>change me</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>ArffDataFile</name>
+        <value>
+          <string>change me</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>BaseAnnotation</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.Sentence</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="WekaTypeSystem.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs>
+          <type allAnnotatorFeatures="true">org.barcelonamedia.uima.types.AttributeValue</type>
+        </inputs>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>false</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </processingResourceMetaData>
+  <resourceManagerConfiguration/>
+</casConsumerDescription>
