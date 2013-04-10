@@ -15,8 +15,10 @@ import org.apache.uima.cas.FSIterator;
 import org.apache.uima.cas.Feature;
 import org.apache.uima.cas.Type;
 import org.apache.uima.cas.text.AnnotationFS;
+import org.apache.uima.cas.text.AnnotationIndex;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JFSIndexRepository;
+import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Level;
@@ -194,24 +196,17 @@ public class WekaClassifier extends JCasAnnotator_ImplBase {
 			FSIndexRepository indexes = jCas.getIndexRepository();
 			
 			Type outputAnnotation_type = jCas.getTypeSystem().getType(this.outputAnnotation);
-			
+			Type baseAnnotation_type= jCas.getTypeSystem().getType(this.baseAnnotation);
 			Feature attributeName_feat = outputAnnotation_type.getFeatureByBaseName(this.attributeNameFeatureName);
 			Feature value_feat = outputAnnotation_type.getFeatureByBaseName(this.valueFeatureName);
 			Feature componentId_feat = outputAnnotation_type.getFeatureByBaseName(this.componentIdFeatureName);
 
 			if (this.baseAnnotation!="") {
-			 	JFSIndexRepository indexesBase = jCas.getJFSIndexRepository();
-			 	FSIndex<Annotation> fsIndex = indexesBase.getAnnotationIndex(AttributeValue.type);
-			 	FSIterator<Annotation> attributeIterator = fsIndex.iterator();
-			 	List<AttributeValue> attributeValues = new ArrayList<AttributeValue>();
-	
-			 	while(attributeIterator.hasNext())
-			 	{
-		 			AttributeValue attributeValue = (AttributeValue) attributeIterator.next();
+	            for (Annotation baseValue: jCas.getAnnotationIndex(baseAnnotation_type)){
 					//logger.log(Level.INFO,">process starts "+wekaInstances.numAttributes()+" "+wekaInstances.toString()+" "+wekaInstances.toSummaryString()+"\n");	
-					wekaInstance = CAS2WekaInstance.toWekaInstance(jCas.getCas(), wekaInstances,attributeValue.getBegin(),attributeValue.getEnd());
+					wekaInstance = CAS2WekaInstance.toWekaInstance(jCas.getCas(), wekaInstances,baseValue.getBegin(),baseValue.getEnd());
 					//logger.log(Level.INFO,"\nwekaInstance "+wekaInstance.toString()+" "+wekaInstance.numAttributes()+" "+wekaInstance.numValues()+"\n");
-					classify (wekaInstance ,jCas,attributeValue.getBegin(),attributeValue.getEnd(),outputAnnotation_type,value_feat,attributeName_feat, componentId_feat, indexes);
+					classify (wekaInstance ,jCas,baseValue.getBegin(),baseValue.getEnd(),outputAnnotation_type,value_feat,attributeName_feat, componentId_feat, indexes);
 			 	}
 			} else { // classify the full document
 			   Annotation docAnn = (Annotation)jCas.getDocumentAnnotationFs();				
