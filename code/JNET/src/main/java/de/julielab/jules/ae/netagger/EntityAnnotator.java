@@ -29,8 +29,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.CasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -62,11 +63,9 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 
 	private static final String COMPONENT_ID = "de.julielab.jules.ae.netagger.EntityAnnotator";
 
-	/**
-	 * Logger for this class
-	 */
-	private static final Logger LOGGER = Logger.getLogger(EntityAnnotator.class);
-
+	/** The logger object. */
+	private static final Logger logger = Logger.getLogger(EntityAnnotator.class.toString());
+	
 	private final static String OUTSIDE_LABEL = "O"; // default outside label
 
 	private static final String TEXTUAL_REPRESENTATION_FEATURE = "TextualRepresentationFeature";
@@ -114,8 +113,8 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 	 * @throws ResourceInitializationException
 	 */
 	public void initialize(UimaContext aContext) throws ResourceInitializationException {
-
-		LOGGER.info("initialize() - initializing UIMA-JNET...");
+		
+		logger.info("initialize() - initializing UIMA-JNET...");
 
 		// invoke default initialization
 		super.initialize(aContext);
@@ -138,13 +137,15 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 			// compulsory param: ExpandAbbreviations
 			Object tmp = aContext.getConfigParameterValue("ExpandAbbreviations");
 			if (tmp != null) {
-				expandAbbr = (Boolean) tmp;
+				this.expandAbbr = (Boolean) tmp;
 			}
+			
 			// compulsory param: ignoreTokenText
 			tmp = aContext.getConfigParameterValue("ignoreTokenText");
 			if (tmp != null) {
 				this.ignoreTokenText = (Boolean) tmp;
 			}
+			
 			//Retrieve input type system params
 			this.sentence_type = (String) aContext.getConfigParameterValue("sentence_type");
 			this.token_type = (String) aContext.getConfigParameterValue("token_type");
@@ -162,10 +163,15 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 			}
 
 			// show configuration
-			LOGGER.info("initialize() - abbreviation expansion: " + expandAbbr);
-			LOGGER.info("initialize() - negative list: " + ((negativeList != null) ? true : false));
-			LOGGER.info("initialize() - show confidence: " + showSegmentConf);
-			LOGGER.info("initialize() - consistency preservation: " + consistPreservation);
+			logger.info("initialize() - abbreviation expansion: " + this.expandAbbr);
+			logger.info("initialize() - ignore token covered text: " + this.ignoreTokenText);
+			
+			logger.info("initialize() - sentence type: " + this.sentence_type);
+			logger.info("initialize() - token type: " + this.token_type);
+			
+			logger.info("initialize() - negative list: " + ((negativeList != null) ? true : false));
+			logger.info("initialize() - show confidence: " + showSegmentConf);
+			logger.info("initialize() - consistency preservation: " + consistPreservation);
 
 		}
 		catch(AnnotatorContextException e){
@@ -184,13 +190,13 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 	 */
 	public void typeSystemInit(TypeSystem typeSystem) throws AnalysisEngineProcessException{
 
-		LOGGER.info("typeSystemInit() - Loading provided types...");
+		logger.info("typeSystemInit() - Loading provided types...");
 
 		this.sentenceType = typeSystem.getType(this.sentence_type);
 		this.tokenType = typeSystem.getType(this.token_type);
 		//this.posType = typeSystem.getType(this.pos_type);
 
-		LOGGER.info("typeSystemInit() - Types loaded.");
+		logger.info("typeSystemInit() - Types loaded.");
 	}
 
 	/**
@@ -247,7 +253,8 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 		if (o != null) {
 			entityTypes = (String[]) o;
 		} else {
-			LOGGER.error("setEntityTypes() - descriptor incomplete, entity types not specified!");
+			
+			logger.log(Level.SEVERE, "setEntityTypes() - descriptor incomplete, entity types not specified!");
 			throw new AnnotatorConfigurationException();
 		}
 
@@ -278,8 +285,8 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 					}
 				}
 				if (!entityFound) {// this does not happen if we find our label
-					LOGGER.error("setEntityTypes() - Could not find entity label \"" + entityParts[0]
-							+ "\" from descriptor in the tagger's OutputAlphabet.", null);
+					
+					logger.log(Level.SEVERE, "setEntityTypes() - Could not find entity label \"" + entityParts[0] + "\" from descriptor in the tagger's OutputAlphabet.");
 					throw new AnnotatorConfigurationException();
 				}
 			}
@@ -299,18 +306,18 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 		if (o != null) {
 			modelFilename = (String) o;
 		} else {
-			LOGGER.error("setModel() - descriptor incomplete, no model file specified!");
+			logger.log(Level.SEVERE, "setModel() - descriptor incomplete, no model file specified!");
 			throw new AnnotatorConfigurationException();
 		}
 
 		// produce an instance of JNET with this model
 		tagger = new NETagger();
 		try {
-			LOGGER.debug("setModel() -  loading JNET model...");
+			logger.log(Level.INFO, "setModel() -  loading JNET model...");
 			File modelPath = new File(modelFilename);
 			tagger.readModel(modelPath.getAbsolutePath());
 		} catch (Exception e) {
-			LOGGER.error("setModel() - Could not load JNET model: " + e.getMessage(), e);
+			logger.log(Level.SEVERE, "setModel() - Could not load JNET model: " + e.getMessage(), e);
 			throw new AnnotatorInitializationException();
 		}
 	}
@@ -327,10 +334,10 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 			try {
 				negativeList = new NegativeList(listFile);
 			} catch (IOException e) {
-				LOGGER.error("setNegativeList() - specified negative list file cannot be read: " + e.getMessage());
+				logger.log(Level.SEVERE, "setNegativeList() - specified negative list file cannot be read: " + e.getMessage());
 				throw new AnnotatorConfigurationException();
 			}
-			LOGGER.debug("setNegativeList() - using negative list: " + listFile);
+			logger.log(Level.INFO, "setNegativeList() - using negative list: " + listFile);
 		}
 	}
 
@@ -342,7 +349,7 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 		if (o != null) {
 			showSegmentConf = (Boolean) o;
 		}
-		LOGGER.debug("setShowSegmentConfidence() - show segment confidence: " + showSegmentConf);
+		logger.log(Level.INFO, "setShowSegmentConfidence() - show segment confidence: " + showSegmentConf);
 	}
 
 	/**
@@ -352,7 +359,7 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 	 */
 	public void process(CAS aCas) throws AnalysisEngineProcessException {
 
-		LOGGER.debug("process() - processing next document");
+		logger.log(Level.INFO, "process() - processing next document");
 
 		JCas aJCas;
 		try {
@@ -372,24 +379,24 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 			List<HashMap<String, String>> metaList = getMetaList(tokenList);
 
 			if (tokenList.size() != metaList.size()) {
-				LOGGER.error("process() - token list, and meta list for this sentence not of same size!");
+				logger.log(Level.SEVERE, "process() - token list, and meta list for this sentence not of same size!");
 				throw new AnalysisEngineProcessException();
 			}
 			// make the Sentence object
 			de.julielab.jnet.tagger.Sentence unitSentence = createUnitSentence(tokenList, aJCas, metaList);
 
-			LOGGER.debug("process() - original sentence: " + sentence.getCoveredText());
+			logger.log(Level.INFO, "process() - original sentence: " + sentence.getCoveredText());
 			StringBuffer unitS = new StringBuffer();
 			for (Unit unit : unitSentence.getUnits()) {
 				unitS.append(unit.getRep() + " ");
 			}
-			LOGGER.debug("process() - sentence for prediction: " + unitSentence.toString());
+			logger.log(Level.INFO, "process() - sentence for prediction: " + unitSentence.toString());
 
 			// predict with JNET
 			try {
 				tagger.predict(unitSentence, showSegmentConf);
 			} catch (JNETException e) {
-				LOGGER.error("process() - predicting with JNET failed: " + e.getMessage());
+				logger.log(Level.SEVERE, "process() - predicting with JNET failed: " + e.getMessage());
 				throw new AnalysisEngineProcessException();
 			}
 
@@ -397,7 +404,7 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 			if (expandAbbr) {
 				unitSentence = removeDuplicatedTokens(unitSentence);
 			}
-			LOGGER.debug("process() - sentence with labels: " + unitSentence.toString());
+			logger.log(Level.INFO, "process() - sentence with labels: " + unitSentence.toString());
 
 			// write predicted labels to CAS
 			writeToCAS(unitSentence, aJCas);
@@ -406,7 +413,7 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 
 		// now do consistency preservation over whole document
 		if (consistPreservation) {
-			LOGGER.debug("process() - running consistency preservation");
+			logger.log(Level.INFO, "process() - running consistency preservation");
 			ConsistencyPreservation.doStringBased(aJCas, entityMentionTypes);
 			//ConsistencyPreservation.doAbbreviationBased(aJCas, entityMentionTypes);
 		}
@@ -627,8 +634,8 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 			}
 		}
 		return abbreviationList;
-	}
-	 */
+	}*/
+	
 	/**
 	 * create an ArrayList of meta-info HashMaps, e.g., one such HashMap for each token which was
 	 * given as input.
@@ -678,11 +685,14 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 	 */
 	private HashMap<String, String> getMetas(AnnotationFS token, Interval[] metaAnnotationValues){
 
+		logger.info("getMetas() start for token " + token.getCoveredText());
+		
 		HashMap<String, String> metaInfos = new HashMap<String, String>();
 
 		// hack for easy JUnit testing without all the meta-infos
 		if(this.featureConfig == null){
 			
+			logger.info("hack for easy JUnit testing without all the meta-infos -- return NULL");
 			return metaInfos;
 		}
 
@@ -692,35 +702,71 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 			
 			for(String activatedMeta : this.activatedMetas){
 				
+				logger.info("first loop - looping on activedMeta " + activatedMeta);
+
 				if(this.annotationIterators.get(activatedMeta).hasNext() && metaAnnotationValues[i] == null){
 					
 					Annotation ann = (Annotation) this.annotationIterators.get(activatedMeta).next();
 					String valueMethodName = this.valueMethods.get(activatedMeta);
 					Method valueMethod = ann.getClass().getMethod(valueMethodName);
 					
+					logger.info("getMetas() - annotation: " + ann.getClass().getName());
+					logger.info("\tgetMetas() - annotation.begin = " + ann.getBegin() + "  annotation.end = " + ann.getEnd());
+					logger.info("\tgetMetas() - annotation.coveredText = " + ann.getCoveredText());
+					logger.info("getMetas() - valueMethodName: " + valueMethodName);
+					
 					metaAnnotationValues[i] = new Interval(ann.getBegin(), ann.getEnd(), "" + valueMethod.invoke(ann, (Object[]) null));
 				}
+				
+				i++;
+			}
 
+			
+			i = 0;				
+				
+			for(String activatedMeta : this.activatedMetas){
+				
+				logger.info("second loop - looping on activedMeta " + activatedMeta);
+				
+				if(metaAnnotationValues[i] != null && !metaAnnotationValues[i].isIn(token.getBegin(), token.getEnd())){
+					
+					logger.info("Annotation is not in Token!!");
+				}
+				
 				if(metaAnnotationValues[i] != null && metaAnnotationValues[i].isIn(token.getBegin(), token.getEnd())){
 					
 					String metaName = this.featureConfig.getProperty(activatedMeta + "_feat_unit");
 					
+					logger.info("getMetas() - metaName: " + metaName);
+					
 					if (this.featureConfig.getProperty(activatedMeta + "_begin_flag").equals("true") && metaAnnotationValues[i].getBegin() == token.getBegin()){
+						
 						metaInfos.put(metaName, "B_" + metaAnnotationValues[i].getAnnotation());
+						logger.info("[1] - getMetas() - metaValue: " + "B_" + metaAnnotationValues[i].getAnnotation());
 					}
 					else{
 						
 						metaInfos.put(metaName, metaAnnotationValues[i].getAnnotation());
+						logger.info("[2] - getMetas() - metaValue: " + metaAnnotationValues[i].getAnnotation());
+					}
+					
+					if(metaAnnotationValues[i].getEnd() == token.getEnd()) {
+						
+						metaAnnotationValues[i] = null; // this annotation has been
+						// used, we
+						// can get the next one
 					}
 				}
 				
 				i++;
 			}
+			
+			logger.info("getMetas() end...");
 		}
 		catch(Exception e){
 			
-			LOGGER.warn("getMetas() - failed getting meta information for current token. No metas used!");
-			LOGGER.warn("Exception message: " + e.getMessage());
+			logger.log(Level.WARNING, "getMetas() - failed getting meta information for current token. No metas used!");
+			logger.log(Level.WARNING, "Exception message: " + e.getMessage());
 			metaInfos = new HashMap<String, String>();
 		}
 
@@ -794,7 +840,7 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 		// check against negative list whether this annotation should be really added
 		String coveredText = aJCas.getDocumentText().substring(start, end);
 		if (negativeList != null && negativeList.contains(coveredText, label)) {
-			LOGGER.debug("addAnnotation() - ignoring current entity mention as contained in negativeList");
+			logger.log(Level.INFO, "addAnnotation() - ignoring current entity mention as contained in negativeList");
 			return; // ignore this entity mention
 		}
 
@@ -833,7 +879,7 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 
 					Feature componentIdFeature = entityMention.getType().getFeatureByBaseName(this.ComponentIDFeatureName);
 					entityMention.setFeatureValueFromString(componentIdFeature, COMPONENT_ID);
-				}				
+				}
 
 				if(showSegmentConf && this.ConfidenceFeatureName != null){
 
@@ -846,14 +892,13 @@ public class EntityAnnotator extends CasAnnotator_ImplBase {
 
 				entityMention.addToIndexes();
 
-			} 
+			}
 			catch (Exception e){
-				LOGGER.error("addAnnotation() - could not generate new EntityMention", e);
+				logger.log(Level.SEVERE, "addAnnotation() - could not generate new EntityMention");
 			}
 		} 
 		else{
-			LOGGER.debug("addAnnotation() - ommitted entity mention for label: " + label);
+			logger.log(Level.INFO, "addAnnotation() - ommitted entity mention for label: " + label);
 		}
-
 	}
 }
