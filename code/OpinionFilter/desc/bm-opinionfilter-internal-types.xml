@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <name>BM-types</name>
+  <description>Internal types only used by OpinioinFilter for filtering candidate polarities.</description>
+  <version>2.1</version>
+  <vendor/>
+  <types>
+    <typeDescription>
+      <name>org.barcelonamedia.uima.opinionfilter.internal_ts.ConceptMapperOpinion</name>
+      <description>Temporary annotation for polatiry output of ConceptMapper.</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>pos</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>

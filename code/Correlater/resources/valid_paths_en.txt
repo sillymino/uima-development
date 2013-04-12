@@ -1,0 +1,16 @@
+^(\|(S|(grup.a)|(s.a)|(sp)))?\|s.a\|$
+^\|((grup.a)|(s.a))\|((grup.a)|(s.a))\|s.a\|$
+^(\|sn)?\|sp\|((grup.a)|(s.a))\|s.a\|$
+^\|suj\|\|atr(\|sn)?$
+^(\|((grup.a)|(s.a)|(grup.nom)))?\|((atr)|(cpred)|(cd))\|\|suj(\|sn)?(\|sp\|sn)?$
+^(\|((grup.a)|(s.a)))?(\|((grup.a)|(s.a)))?\|((atr)|(cpred)|(cd))\|\|suj(\|sn)?(\|sp\|sn)?$
+^(\|sn)?\|cc\|\|suj(\|sn)?$
+^\|\|suj(\|((sn)|(grup.nom)))?$
+^\|\|cd$
+^(\|atr)?\|S\|$
+^\|\|S(\|atr)?$
+^\|sn\|$
+^\|\|sn$
+^(\|sn)?\|sp\|$
+^\|\|sp\|sn(\|grup.nom)?$
+^\|sadv\|$

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <implementationName>org.barcelonamedia.uima.consumer.WekaConsumer.ARFFHeaderFileCasConsumer</implementationName>
+  <processingResourceMetaData>
+    <name>ARFFHeaderFileCasConsumer</name>
+    <version>1.0</version>
+    <configurationParameters>
+      <configurationParameter>
+        <name>ArffHeaderFile</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ArffRelation</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>ArffHeaderFile</name>
+        <value>
+          <string>change me</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>ArffRelation</name>
+        <value>
+          <string>change me</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="WekaTypeSystem.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <capabilities>
+      <capability>
+        <inputs>
+          <type allAnnotatorFeatures="true">org.barcelonamedia.uima.types.AttributeValue</type>
+        </inputs>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>false</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </processingResourceMetaData>
+</casConsumerDescription>

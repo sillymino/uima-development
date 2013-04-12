@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taeDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.cpp</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>_pythonnator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Python Correlater Annotator</name>
+    <description/>
+    <version>1.0</version>
+    <vendor>IBM</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>DebugLevel</name>
+        <description>Sets the perl annotators debug level</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>SourceFile</name>
+        <description>Python code to be loaded</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>pathsRulesFile</name>
+        <description>Path al archivo que contiene expresiones regulares para paths válidos.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>originTypeName</name>
+        <description>Tipo de la anotación origen.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>destinationTypeName</name>
+        <description>Tipo de la anotación destino</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>relationTypeName</name>
+        <description>Tipo de la anotación de salida del anotador.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>originFeatName</name>
+        <description>Feature de la anotación relationType donde se guardará la anotación de origen.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>destinationFeatName</name>
+        <description>Feature de la anotación relationType donde se guardará la anotación de destino.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>pathFeatName</name>
+        <description>Feature de la anotación relationType donde se guardará el path de la relation.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>mirrorText</name>
+        <description>Flag que indica si se establecerá el texto que cubre la anotación destino en la feature value de los tokens que cubre la anotación de origen y viceversa.</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>DebugLevel</name>
+        <value>
+          <integer>101</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>SourceFile</name>
+        <value>
+          <string>correlater</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>pathsRulesFile</name>
+        <value>
+          <string>$main_root/resources/valid_paths_en.txt</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>destinationTypeName</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.opinion.Target</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>originTypeName</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.opinion.Cue</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>relationTypeName</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.acceso.OpinionatedUnit</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>originFeatName</name>
+        <value>
+          <string>Cue</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>destinationFeatName</name>
+        <value>
+          <string>Target</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>mirrorText</name>
+        <value>
+          <integer>1</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>pathFeatName</name>
+        <value>
+          <string></string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="bm-syntax-types.xml"/>
+        <import location="bm-meta-types.xml"/>
+        <import location="bm-opinion-types.xml"/>
+        <import location="bm-semantics-types.xml"/>
+        <import location="bm-acceso-types.xml"/>
+        <import location="SourceDocumentInformation.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">org.barcelonamedia.uima.ts.opinion.Target</type>
+        </outputs>
+        <languagesSupported>
+          <language>x-unspecified</language>
+        </languagesSupported>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</taeDescription>

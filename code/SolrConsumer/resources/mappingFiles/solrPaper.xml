@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../src/main/resources/solrConsumerMapping.xsd">
+
+    <field name="Content">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="true" separator='#'>
+                    <feature name="posTag">
+                        <annotation type="de.julielab.jules.types.POSTag">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+    <field name="payload">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="true" separator='|'>
+                    <feature name="posTag">
+                        <annotation type="de.julielab.jules.types.POSTag">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                </features>
+            </annotation>
+        </annotations>
+    </field>    
+</fields>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taeDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.cpp</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>_pythonnator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>HeuristicPolarityAssigner_booking Annotator</name>
+    <description/>
+    <version>1.0</version>
+    <vendor>IBM</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>DebugLevel</name>
+        <description>Sets the perl annotators debug level</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>SourceFile</name>
+        <description>Python code to be loaded</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>DebugLevel</name>
+        <value>
+          <integer>101</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>SourceFile</name>
+        <value>
+          <string>heuristic_polarity_assigner_booking</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="bm-syntax-types.xml"/>
+        <import location="bm-meta-types.xml"/>
+        <import location="bm-opinion-types.xml"/>
+        <import location="bm-semantics-types.xml"/>
+        <import location="bm-acceso-types.xml"/>
+        <import location="SourceDocumentInformation.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">org.barcelonamedia.uima.ts.opinion.Target</type>
+        </outputs>
+        <languagesSupported>
+          <language>x-unspecified</language>
+        </languagesSupported>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</taeDescription>

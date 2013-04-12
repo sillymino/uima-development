@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>org.barcelonamedia.uima.analysis_engine.configurableAnnotator.ConfigurableAnnotator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Configurable Annotator</name>
+    <description/>
+    <version>0.1</version>
+    <vendor>Barcelona Media</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>mappingFile</name>
+        <description>path to the mapping file</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>addDocumentFilenameField</name>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>segmentTypeName</name>
+        <description>Type of the annotation which is to be used as the segment annotation.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>mappingFile</name>
+        <value>
+          <string>$main_root/resources/mappingFiles/solrExample.xml</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>segmentTypeName</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.Token</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="WekaTypeSystem.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">org.barcelonamedia.uima.types.AttributeValue</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

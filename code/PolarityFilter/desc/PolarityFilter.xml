@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taeDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.cpp</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>_pythonnator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Python Polarity Filter Annotator</name>
+    <description>Simple regular expression matcher</description>
+    <version>1.0</version>
+    <vendor>IBM</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>DebugLevel</name>
+        <description>Sets the perl annotators debug level</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>SourceFile</name>
+        <description>Python code to be loaded</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>new_feature</name>
+        <description>Nombre absoluto y valor de la nueva feature a crear por el anotador</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ref_feature</name>
+        <description>Nombre absoluto y feature de la anotación de referencia</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>filtering_features</name>
+        <description>String que especifica qué features de anotaciones y con qué valores será necesario disponer para crear la nueva anotación. 
+         Cada notación se separa de la siguiente mediante el carcater '#'</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>DebugLevel</name>
+        <value>
+          <integer>101</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>SourceFile</name>
+        <value>
+          <string>polarity_filter</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>new_feature</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.meta.PolarityClass:value=Neutral</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>ref_feature</name>
+        <value>
+          <string>org.barcelonamedia.uima.types.NominalAttributeValue:value</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>filtering_features</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.opinion.Polar:polarity=^.*$</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="WekaTypeSystem.xml"/>
+        <import location="bm-syntax-types.xml"/>
+        <import location="bm-meta-types.xml"/>
+        <import location="bm-opinion-types.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">org.barcelonamedia.uima.ts.meta.PolarityClass</type>
+        </outputs>
+        <languagesSupported>
+          <language>x-unspecified</language>
+        </languagesSupported>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+</taeDescription>

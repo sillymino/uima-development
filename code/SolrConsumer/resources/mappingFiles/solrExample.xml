@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../src/main/resources/solrConsumerMapping.xsd">
+
+    <field name="texto">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="true" separator=" "/>
+            </annotation>
+        </annotations>
+    </field>
+    <field name="lemmas">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="false" separator="|">
+                    <feature name="lemma">
+                        <annotation type="de.julielab.jules.types.Lemma">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                    <feature name="posTag">
+                        <annotation type="de.julielab.jules.types.POSTag">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+    <field name="entity">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.EntityMention">
+                <features coveredText="true" separator="|">
+                    <feature name="specificType"/>
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+</fields>

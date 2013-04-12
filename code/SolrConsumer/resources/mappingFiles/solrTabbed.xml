@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../src/main/resources/solrConsumerMapping.xsd">
+
+    <field name="lemmas">
+        <annotations>
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="true" separator="\t">
+                    <feature name="lemma">
+                        <annotation type="de.julielab.jules.types.Lemma">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                    <feature name="posTag">
+                        <annotation type="de.julielab.jules.types.POSTag">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+</fields>

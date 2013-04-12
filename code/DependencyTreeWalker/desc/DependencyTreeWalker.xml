@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taeDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.cpp</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>_pythonnator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Python Polarity Filter Annotator</name>
+    <description>Simple regular expression matcher</description>
+    <version>1.0</version>
+    <vendor>IBM</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>DebugLevel</name>
+        <description>Sets the perl annotators debug level</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>SourceFile</name>
+        <description>Python code to be loaded</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>all_filtering_features_needed</name>
+        <description>Indica si se deben cumplir todas las fetaures de filtrado solamente una es necesaria.</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>filtering_features</name>
+        <description>String que especifica qué features de anotaciones y con qué valores será necesario disponer para crear la nueva anotación. 
+         Cada notación se separa de la siguiente mediante el carcater '#'</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>output_annotation_name</name>
+        <description>Name for the annotation to be returned by the annotator.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>output_features_name</name>
+        <description>Name of the features of the output annotation that will be used by the annotation.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>provided_script</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>DebugLevel</name>
+        <value>
+          <integer>101</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>SourceFile</name>
+        <value>
+          <string>dependency_tree_walker</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>filtering_features</name>
+        <value>
+          <string>lemma=^el$</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>all_filtering_features_needed</name>
+        <value>
+          <integer>0</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>output_annotation_name</name>
+        <value>
+          <string>org.barcelonamedia.uima.ts.DepencencyTreeAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>output_features_name</name>
+        <value>
+          <string>mother_lemma</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>provided_script</name>
+        <value>
+          <string>my_personal_script</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import location="DependencyTreeTypeSystem.xml"/>
+        <import location="bm-syntax-types.xml"/>
+        <import location="bm-meta-types.xml"/>
+        <import location="bm-opinion-types.xml"/>
+        <import location="bm-semantics-types.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">org.barcelonamedia.uima.ts.DepencencyTreeAnnotation</type>
+        </outputs>
+        <languagesSupported>
+          <language>x-unspecified</language>
+        </languagesSupported>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+</taeDescription>

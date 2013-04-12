@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../src/main/resources/mapping.xsd">
+
+    <field name="text" type="org.barcelonamedia.uima.types.StringAttributeValue">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="true"/>
+            </annotation>
+        </annotations>
+    </field>
+    <field name="polarity" type="org.barcelonamedia.uima.types.NominalAttributeValue">
+        <annotations separator=" ">
+            <annotation type="org.barcelonamedia.uima.types.MetadataAnnotation">
+                <features>
+                    <feature name="value"/>
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+   
+    <!-- 
+    <field name="lemmas" type="org.barcelonamedia.uima.types.StringAttributeValue">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="false">
+                    <feature name="lemma">
+                        <annotation type="de.julielab.jules.types.Lemma">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+    <field name="postag" type="org.barcelonamedia.uima.types.StringAttributeValue">
+        <annotations separator=" ">
+            <annotation type="de.julielab.jules.types.Token">
+                <features coveredText="false">
+                    <feature name="posTag">
+                        <annotation type="de.julielab.jules.types.POSTag">
+                            <features>
+                                <feature name="value"/>
+                            </features>
+                        </annotation>
+                    </feature>
+                </features>
+            </annotation>
+        </annotations>
+    </field>
+    -->
+</fields>
